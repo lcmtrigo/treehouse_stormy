@@ -36,7 +36,11 @@ public class DayAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
+<<<<<<< HEAD
         return 0; // we are not going to use this. Tag items for easy reference
+=======
+        return 0; // we aren't going to use this. Tag items for easy reference
+>>>>>>> origin/master
     }
 
     @Override
