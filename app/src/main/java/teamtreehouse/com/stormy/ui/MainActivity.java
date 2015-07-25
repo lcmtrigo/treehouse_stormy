@@ -39,6 +39,7 @@ import teamtreehouse.com.stormy.weather.Hour;
 public class MainActivity extends Activity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String DAILY_FORECAST = "DAILY_FORECAST";
 
     private Forecast mForecast;
 
@@ -69,6 +70,8 @@ public class MainActivity extends Activity {
                 getForecast(latitude, longitude);
             }
         });
+
+        getForecast(latitude, longitude);
 
         Log.d(TAG, "Main UI code is running");
     }
@@ -205,8 +208,9 @@ public class MainActivity extends Activity {
             Hour hour = new Hour();
 
             hour.setSummary(jsonHour.getString("summary"));
-            hour.setTemperature(jsonHour.getDouble("temperature"));
             hour.setIcon(jsonHour.getString("icon"));
+            hour.setTemperature(jsonHour.getDouble("temperature"));
+
             hour.setTime(jsonHour.getLong("time"));
             hour.setTimezone(timezone);
 
@@ -255,6 +259,7 @@ public class MainActivity extends Activity {
     @OnClick (R.id.dailyButton)
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
+        intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
         startActivity(intent);
     }
 }

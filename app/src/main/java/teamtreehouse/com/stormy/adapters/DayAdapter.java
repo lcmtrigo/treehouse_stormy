@@ -36,11 +36,7 @@ public class DayAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-<<<<<<< HEAD
-        return 0; // we are not going to use this. Tag items for easy reference
-=======
         return 0; // we aren't going to use this. Tag items for easy reference
->>>>>>> origin/master
     }
 
     @Override
@@ -56,7 +52,8 @@ public class DayAdapter extends BaseAdapter {
             holder.dayLabel = (TextView) convertView.findViewById(R.id.dayNameLabel);
 
             convertView.setTag(holder);
-        } else {
+        }
+        else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -64,8 +61,13 @@ public class DayAdapter extends BaseAdapter {
 
         holder.iconImageView.setImageResource(day.getIconId());
         holder.temperatureLabel.setText(day.getTemperatureMax() + "");
-        holder.dayLabel.setText(Day.getDayOfTheWeek);
-        return null;
+
+        if (position == 0) {
+            holder.dayLabel.setText("Today");
+        }
+        else { holder.dayLabel.setText(day.getDayOfTheWeek()); }
+
+        return convertView;
     }
 
     private static class ViewHolder {
